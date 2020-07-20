@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>web前端开发技术课程网站</title>
+		<style type="text/css">
+			*{
+				font-size: 12px;color: #666666;font-family: "宋体" ,arial,Helvetica,sans-serif;
+			}
+			body{
+				margin: 0px auto;padding: 0px;text-align: center;
+			}
+			#container{
+				width: 1408px;padding: 0 auto;margin: 0 auto;	
+			}
+			img{
+				width: 1408px;height: 200px;
+			}
+			#menu ul{
+				 padding: 0;border: 0;list-style: none;line-height: 150%;margin-top: 0;margin-bottom: 0;margin-left: 260px;margin-right: 0;
+			 }
+			#menu_out{
+			 	width: 1408px; padding-left: 4px;margin-left: auto;margin-right:auto;background: url(./res/img/menu_left.gif) no-repeat left top;
+			 	overflow: hidden;
+			 }
+			#menu_in{
+				background: url(./res/img/menu_right.gif) no-repeat right top; padding-right: 4px;
+			}
+		
+			
+			 #menu{
+				 background: url(./res/img/menu_bg.gif) repeat-x;height: 73px;width: 1408px;              
+			 }
+			 .menu_line{
+				 background: url(./res/img/menu_line.gif) no-repeat center top; width: 8px;
+			 }
+			 .menu_line2{
+				 background: url(./res/img/menu_line2.gif) no-repeat center top; width: 15px; 
+			 }
+			 #nav{
+				padding-left: 20px;width: 1408px; 
+			 }
+			 #nav li{
+				 float: left; height:30 px;
+			 }
+			 #nav li a{
+				 float: left; display: block; padding-left: 6px; height: 35px; cursor: pointer; text-decoration: none;
+				 background: url(./res/img/menu_on_left.gif) no-repeat left top;
+			 }
+			 #nav li a span{
+				 float: left; padding: 11px 14px 10px 10px; line-height: 14px;text-decoration: none; 
+				 background: url(./res/img/menu_on_right.gif) no-repeat right top;
+				 font-size: 14px; font-weight: bold; color: #FFFFFF; 
+			 }
+			 #nav li .nav_on{
+				 background-position: left 100%;
+			 }
+			 #nav li .nav_on span{
+				 background-position: right 100%;
+				 color: #333333;text-decoration: none;padding: 14px 14px 7px 10px;
+			 }
+			 /*  */
+			 #menu_con{
+				 text-align: left; padding-left: 20px; clear: both;
+			 }
+			 #menu_con li{
+				 float: left; height: 22px;margin-top: 4px;
+			 }
+			 #menu_con li a{
+				 display: block; float: left; background: url(./res/img/menu_on_left2.gif) no-repeat left top; cursor: pointer; padding-left: 3px;
+			 }
+			 #menu_con li a span{
+				 float: left; padding: 6px 10px 4px 10px; line-height: 12px; background: url(./res/img/menu_on_right2.gif) no-repeat right top;
+			 }
+			 #menu_con li a:hover{
+				 text-decoration: none; background: url(./res/img/menu_on_left2.gif) no-repeat left bottom;
+			 }
+			 #menu_con li a:hover span{
+				 background: url(./res/img/menu_on_right2.gif) no-repeat right bottom;
+			 }
+			 #main{
+				 width: 1408px;height: 300px;
+			 }
+			 #left{
+				 width: 478px;height: 518px;float: left;border: 1px solid #F1F1F1;
+			 }
+			 #left img{
+				 width: 478px;height: 518px;
+			 }
+			 #right{
+				 width: 928px; height: 518px; float:left;
+			 }
+			 #right iframe{
+				 width: 928px; height: 518px; border: 0px;padding: 0px;margin: 0px;
+			 }
+			 #bottom{
+				 clear: both; height: 80px; background: #FF9820;text-align: center;padding-top:20px; color: white; font-size: 18px; width: 1408px;
+			 }
+			 #bottom ul{
+				 list-style: none;color: #FFEEDD;
+			 }
+			 
+		</style>
+		<script type="text/javascript">
+			/*
+				指定的标签特效
+			*/
+			function change_con(num){
+				
+				for(var id = 0;id<=8;id++){
+					if(id==num){
+						document.getElementById("con"+id).style.display = "block";
+						document.getElementById("mynav"+id).className = "nav_on";
+						//播放音乐
+						var audio = new Audio("./res/audio/audio"+id+".mp3")
+						audio.play();
+					}else{
+						document.getElementById("con"+id).style.display = "none";
+						document.getElementById("mynav"+id).className = "nav_off";
+						//audio.pause();
+					}
+				}
+			}
+			/*
+				以下为图片自动切换代码
+			*/
+			var CurScreen=1;	//当前图像
+			var MaxSvreen=5;	//最大图片长度
+			var timer = null;	//定时器
+			var timer2 = null;  
+			//找到图片
+			function $(id) {return document.getElementById(id);}
+			function switchPic(){
+				//实现图片切换
+				if(CurScreen==MaxSvreen){
+					CurScreen=1;
+				}else{
+					CurScreen++;
+				}
+				$("pic").src="./res/img/example"+CurScreen+".png";
+			}
+			//重新启动图片切换
+			function restart(){
+				switchPic();
+				init();
+			}
+			//实现 切换停止
+			function pause(){
+				clearInterval(timer);
+			}
+			function init(){
+				//设置顶定时器，来实现定时切换
+				timer = setInterval('switchPic();',1500);    
+				
+				
+			}
+			function readyGo(){
+				console.log("-----------------月出皎兮,佼人僚兮。-----------------");
+				console.log("-----------------舒窈纠兮,劳心悄兮。-----------------");
+				console.log("-----------------月出皓兮,佼人懰兮。-----------------");
+				console.log("-----------------舒忧受兮,劳心慅兮。-----------------");
+				console.log("-----------------月出照兮,佼人燎兮。-----------------");
+				console.log("-----------------舒夭绍兮,劳心惨兮。-----------------");
+			}
+			
+		</script>
+	</head>
+	<body onload="init();readyGo()" >
+	<div id="container">
+		<div id="logo">
+			<img src="./res/img/web_logo.jpg" >
+			
+		</div>
+		<div id="menu_out">
+			<div id="menu_in">
+				<div id="menu">
+					<ul id="nav">
+						<li><a href="#" class="nav_on" id="mynav0" onmouseover="javascript:change_con(0)" target="framebody"><span>首页</span></a></li>
+						<li class="menu_line"></li>
+						<li><a href="#" class="nav_off" id="mynav1" onmouseover="javascript:change_con(1)"><span>课程简介</span></a></li>
+						<li class="menu_line"></li>
+						<li><a href="#" class="nav_off" id="mynav2" onmouseover="javascript:change_con(2)"><span>主讲教师</span></a></li>
+						<li class="menu_line"></li>
+						<li><a href="#" class="nav_off" id="mynav3" onmouseover="javascript:change_con(3)"><span>教学团队</span></a></li>
+						<li class="menu_line"></li>
+						<li><a href="#" class="nav_off" id="mynav4" onmouseover="javascript:change_con(4)"><span>教学课件</span></a></li>
+						<li class="menu_line"></li>
+						<li><a href="#" class="nav_off" id="mynav5" onmouseover="javascript:change_con(5)"><span>实验项目</span></a></li>
+						<li class="menu_line"></li>
+						<li><a href="#" class="nav_off" id="mynav6" onmouseover="javascript:change_con(6)"><span>课程设计</span></a></li>
+						<li class="menu_line"></li>
+						<li><a href="#" class="nav_off" id="mynav7" onmouseover="javascript:change_con(7)"><span>在线测试</span></a></li>
+						<li class="menu_line"></li>
+						<li><a href="#" class="nav_off" id="mynav8" onmouseover="javascript:change_con(8)"><span>网络资源</span></a></li>
+					</ul>
+					<div id="menu_con">
+						<div id="con0" style="display: block;">
+							<ul>
+								<li><a href="#"><span>课程发展</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href="#"><span>课程特色</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href="#"><span>教学成果</span></a></li>
+							</ul>
+						</div>
+						<div id="con1" style="display: none;">
+							<ul>
+								<li><a href=""><span>教学大纲</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>教学计划</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>实验计划</span></a></li>
+							</ul>
+						</div>
+						<div id="con2" style="display: none;">
+							<ul>
+								<li><a href=""><span>教学工作</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>教学改革</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>科研成果</span></a></li>
+							</ul>
+						</div>
+						<div id="con3" style="display: none;">
+							<ul>
+								<li><a href=""><span>储久良</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>姜&nbsp;&nbsp;枫</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>王&nbsp;&nbsp;巍</span></a></li>
+							</ul>
+						</div>
+						<div id="con4" style="display: none;">
+							<ul>
+								<li><a href=""><span>HTML-PPT</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>CSS-PPT</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>JavaScript-PPT</span></a></li>
+							</ul>
+						</div>
+						<div id="con5" style="display: none;">
+							<ul>
+								<li><a href=""><span>HTML部分实验</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>CSS部分实验</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>JavaScript部分实验</span></a></li>
+							</ul>
+						</div>
+						<div id="con6" style="display: none;">
+							<ul>
+								<li><a href=""><span>设计案例1</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>设计案例2</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>设计案例3</span></a></li>
+							</ul>
+						</div>
+						<div id="con7" style="display: none;">
+							<ul>
+								<li><a href=""><span>综合练习1</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>综合练习2</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href=""><span>综合练习3</span></a></li>
+							</ul>
+						</div>
+						<div id="con8" style="display: none;">
+							<ul>
+								<li><a href="https://www.w3school.com.cn/html/index.asp" target="_blank"><span>HTML教程</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href="https://www.w3school.com.cn/html5/index.asp" target="_blank"><span>HTML5规范</span></a></li>
+								<li class="menu_line2"></li>
+								<li><a href="https://www.w3school.com.cn/jquery/index.asp" target="_blank"><span>jQuery在线手册</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="main">
+			<div id="left">
+				<a href="#"><img id="pic" src="./res/img/example1.png" border="0" alt="" onmouseover="pause();" onmouseout="restart();" ></a>
+			</div>
+			<div id="right">
+				<iframe src="guide.html" name="framebody"></iframe>
+			</div>
+		</div>
+		<!--底部设计 -->
+		<div id="bottom">
+			<ul>
+				<li><strong>友情链接</strong>
+					<select size="1" name="d1" onchange="window.open(this.options[this.selectedIndex].value)">
+						<option value ="https://www.tsinghua.edu.cn/">清华大学</option>
+						<option value ="https://www.pku.edu.cn/">北京大学</option>
+						<option value="https://www.fudan.edu.cn/">复旦大学</option>
+						<option value="https://www.sjtu.edu.cn/">上海交通大学</option>
+						<option value="http://www.xjtu.edu.cn/">西安交通大学</option>
+					</select>
+					<select size="1" name="d1" onchange="window.open(this.options[this.selectedIndex].value)">
+					<option value="">网络课程资源链接</option>
+					<option value="">中国大学mooc</option>
+					<option value="">国家精品课程共享服务信息平台</option>
+					<option value="">复旦大学精品课程</option>
+					<option value="">西北大学精品课程建设网</option>
+					<option value="">中国高校课程网</option>
+					<option value="">中国教育和科研计算机网</option>	
+					</select>
+				</li>
+				<li>
+					web前端开发技术课程建设小组 2015-2020&copy;保留所有权利，未经允许不得复制、镜像
+				</li>
+				
+			</ul>
+		</div>
+		
+	</div>	
+	</body>
+</html>
