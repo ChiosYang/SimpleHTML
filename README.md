@@ -1,6 +1,6 @@
 # SimpleHTML
-一个简单的HTML页面/A simple page
------------
+一个简单的HTML导航页面/A simple guide page
+
 背景/BackGround
 ---------
 按照要求实现的包含相应功能的页面/A page containing corresponding functions implemented as required.<br>
